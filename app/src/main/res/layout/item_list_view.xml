@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+<!--    Todo : définir un style pour la taille de l'éciture-->
+    <TextView
+        android:id="@+id/item_list_view_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Nom restaurant"
+        style="@style/RestaurantName"/>
+
+    <TextView
+        android:id="@+id/item_list_view_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        app:layout_constraintStart_toStartOf="@id/item_list_view_title"
+        app:layout_constraintTop_toBottomOf="@id/item_list_view_title"
+        tools:text ="Adresse du restaurant"
+        style="@style/RestaurantAddress"/>
+
+    <TextView
+        android:id="@+id/item_list_view_opening_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintStart_toStartOf="@id/item_list_view_title"
+        app:layout_constraintTop_toBottomOf="@id/item_list_view_address"
+        tools:text = "Time"
+        style="@style/RestaurantOpeningTime"/>
+
+    <ImageView
+        android:id="@+id/item_list_view_image"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars"
+        android:contentDescription="@string/restaurant_picture_description" />
+        
+    <TextView
+        android:id="@+id/item_list_view_distance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintTop_toTopOf="@id/item_list_view_title"
+        app:layout_constraintEnd_toStartOf="@id/item_list_view_image"
+        tools:text="Distance"/>
+    
+    <TextView
+        android:id="@+id/item_list_view_colleague_interested_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@id/item_list_view_distance"
+        app:layout_constraintTop_toTopOf="@id/item_list_view_address"
+        tools:text="(1)"
+        style="@style/RestaurantInterestedPerson"
+        app:drawableLeftCompat="@drawable/ic_person_outline_24" />
+
+    <RatingBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:rating="1"
+        android:numStars = "3"
+        android:isIndicator="true"
+        android:stepSize="1"
+        style="@style/Widget.AppCompat.RatingBar.Small"
+        android:theme="@style/RatingBarCustom"
+        app:layout_constraintEnd_toEndOf="@id/item_list_view_distance"
+        app:layout_constraintTop_toTopOf="@id/item_list_view_opening_time"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
