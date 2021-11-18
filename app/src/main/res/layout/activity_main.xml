@@ -42,7 +42,7 @@
         app:itemIconTint="@color/white"
         app:itemTextColor="@color/white"
         app:menu="@menu/activity_main_menu_drawer"
-        tools:visibility="gone" />
+        tools:visibility="visible" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

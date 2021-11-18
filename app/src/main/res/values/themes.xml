@@ -26,7 +26,7 @@
         <item name="android:colorControlActivated">@color/yellow</item>
     </style>
 
-<!--    Text style for item list view-->
+    <!--    Text style for item list view-->
     <style name="RestaurantAddress" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@android:color/black</item>
     </style>
@@ -44,9 +44,9 @@
         <item name="android:textStyle">bold</item>
     </style>
 
-<!--    Style for activity restaurant detail-->
+    <!--    Style for activity restaurant detail-->
 
-<!--    Restaurant detail-->
+    <!--    Restaurant detail-->
     <style name="RestaurantNameDetail" parent="RestaurantName">
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">22dp</item>
@@ -57,11 +57,37 @@
         <item name="android:textSize">16dp</item>
     </style>
 
-<!--    Restaurant icon-->
+    <!--    Restaurant icon-->
     <style name="RestaurantIcon" parent="Widget.AppCompat.TextView">
         <item name="android:textSize">18dp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/orange</item>
     </style>
 
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <!--    Style Sign-in Activity-->
+    <style name="LoginTheme" parent="AppTheme">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorButtonNormal">@color/colorAccent</item>
+        <item name="colorControlNormal">@android:color/darker_gray</item>
+        <item name="colorControlActivated">@android:color/darker_gray</item>
+        <item name="colorControlHighlight">@android:color/darker_gray</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColorPrimary">@android:color/darker_gray</item>
+        <item name="android:textColorSecondary">@android:color/darker_gray</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:textColorHint">@android:color/darker_gray</item>
+        <item name="android:windowBackground">@drawable/background_authentication</item>
+    </style>
 </resources>
