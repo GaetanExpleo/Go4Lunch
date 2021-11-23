@@ -1,55 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="@dimen/nav_header_height">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/background_landscape"
+        android:scaleType="centerCrop"
+        android:contentDescription="@string/background_picture_navigation_view" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/app_name"
+        android:layout_marginTop="32dp"
         android:gravity="center"
+        android:text="@string/app_name"
+        android:textColor="@color/white"
         android:textSize="@dimen/title_nav_view_size"
         android:textStyle="bold"
-        android:textColor="@color/white"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ImageView
+        android:id="@+id/nav_view_imageview"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        android:contentDescription="@string/user_profile_picture"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_height="48dp"
+        tools:layout_width="48dp"
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+    <View
+        android:id="@+id/view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="1dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@id/nav_view_imageview"
+        app:layout_constraintTop_toTopOf="@id/nav_view_imageview" />
 
-        <ImageView
-            android:id="@+id/nav_view_imageview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginStart="16dp"
-            android:layout_marginBottom="16dp"
-            tools:srcCompat="@tools:sample/backgrounds/scenic"
-            tools:layout_height="48dp"
-            tools:layout_width="48dp"
-            android:contentDescription="@string/user_profile_picture" />
+    <TextView
+        android:id="@+id/nav_view_username_textview"
+        style="@style/HeaderNavigationViewName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toTopOf="@id/view"
+        app:layout_constraintStart_toEndOf="@id/nav_view_imageview"
+        tools:text="Username" />
 
-        <TextView
-            android:id="@+id/nav_view_username_textview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toEndOf="@id/nav_view_imageview"
-            app:layout_constraintTop_toTopOf="@id/nav_view_imageview"
-            app:layout_constraintBottom_toTopOf="@id/nav_view_email_textview"
-            android:layout_marginStart="8dp"/>
+    <TextView
+        android:id="@+id/nav_view_email_textview"
+        style="@style/HeaderNavigationViewEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        app:layout_constraintStart_toStartOf="@id/nav_view_username_textview"
+        app:layout_constraintTop_toBottomOf="@id/view"
+        tools:text="email" />
 
-        <TextView
-            android:id="@+id/nav_view_email_textview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@id/nav_view_username_textview"
-            app:layout_constraintBottom_toBottomOf="@id/nav_view_imageview"
-            app:layout_constraintTop_toBottomOf="@id/nav_view_username_textview"/>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
