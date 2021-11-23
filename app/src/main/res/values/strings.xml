@@ -19,12 +19,22 @@
     <string name="restaurant_picture_description">Restaurant picture</string>
     <string name="workmate_picture_description">Workmate picture</string>
     <string name="title_activity_authentication">AuthenticationActivity</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="facebook_application_id">2987624778120944</string>
+    <string name="fb_login_protocol_scheme">fb2987624778120944</string>
+    
+    <!-- Main activity -->
+    <string name="error_not_connected">You must sign in !</string>
+    <string name="error_authentication_canceled">Authentication canceled</string>
+    <string name="error_no_internet">No internet connection !</string>
+    <string name="error_unknown_error">An unknown error has occurred</string>
+    <string name="connection_succeed">Successful authentication !</string>
+    <string name="button_login_text_logged">Display profile</string>
+    <string name="button_login_text_not_logged">Connection</string>
+
+    <!-- Nav header-->
+    <string name="info_no_username_found">No username found</string>
+    <string name="info_no_email_found">No email found</string>
+    <string name="go4lunch_logo">Go4Lunch logo</string>
+    <string name="background_picture_navigation_view">background picture navigation</string>
 </resources>

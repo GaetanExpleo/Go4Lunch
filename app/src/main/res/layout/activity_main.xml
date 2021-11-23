@@ -21,7 +21,7 @@
             android:background="@color/orange"
             android:theme="@style/ToolbarStyle" />
 
-        <fragment
+        <androidx.fragment.app.FragmentContainerView
             android:id="@+id/activity_main_fragment"
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
@@ -30,19 +30,6 @@
             app:navGraph="@navigation/mobile_navigation" />
 
     </LinearLayout>
-
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/activity_main_nav_view"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:background="@color/orange"
-        android:fitsSystemWindows="true"
-        app:headerLayout="@layout/activity_main_nav_header"
-        app:itemIconTint="@color/white"
-        app:itemTextColor="@color/white"
-        app:menu="@menu/activity_main_menu_drawer"
-        tools:visibility="visible" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -60,5 +47,27 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/activity_main_nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="@color/orange"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/activity_main_nav_header"
+        app:itemIconTint="@color/white"
+        app:itemTextColor="@color/white"
+        app:menu="@menu/activity_main_menu_drawer"
+        tools:visibility="visible">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_gravity="bottom|center"
+            android:clickable="false"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_go4lunch_logo"
+            android:contentDescription="@string/go4lunch_logo" />
+    </com.google.android.material.navigation.NavigationView>
 
 </androidx.drawerlayout.widget.DrawerLayout>

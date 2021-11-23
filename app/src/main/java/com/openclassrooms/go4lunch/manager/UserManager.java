@@ -43,6 +43,10 @@ public class UserManager {
         return mUserRepository.signOut(context);
     }
 
+    public void createUser(){
+        mUserRepository.createUser();
+    }
+
     public Task<User> getUserData() {
         // Get the user from Firestore and cast it to a User model object
         return mUserRepository.getUserData().continueWith((Continuation<DocumentSnapshot, User>) task ->
