@@ -2,27 +2,34 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:padding="8dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-<!--    Todo : définir un style pour la taille de l'éciture-->
     <TextView
         android:id="@+id/item_list_view_title"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:ellipsize="marquee"
+        android:singleLine="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/item_list_view_distance"
         tools:text="Nom restaurant"
         style="@style/RestaurantName"/>
 
     <TextView
         android:id="@+id/item_list_view_address"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
+        android:layout_marginEnd="8dp"
+        android:ellipsize="marquee"
+        android:singleLine="true"
         app:layout_constraintStart_toStartOf="@id/item_list_view_title"
         app:layout_constraintTop_toBottomOf="@id/item_list_view_title"
+        app:layout_constraintEnd_toStartOf="@id/item_list_view_colleague_interested_number"
         tools:text ="Adresse du restaurant"
         style="@style/RestaurantAddress"/>
 
@@ -34,18 +41,19 @@
         android:layout_marginBottom="8dp"
         app:layout_constraintStart_toStartOf="@id/item_list_view_title"
         app:layout_constraintTop_toBottomOf="@id/item_list_view_address"
-        tools:text = "Time"
-        style="@style/RestaurantOpeningTime"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text = "Opened"/>
 
     <ImageView
         android:id="@+id/item_list_view_image"
         android:layout_width="64dp"
         android:layout_height="64dp"
-        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         tools:srcCompat="@tools:sample/avatars"
-        android:contentDescription="@string/restaurant_picture_description" />
+        android:scaleType="centerCrop"
+        android:contentDescription="@string/restaurant_picture_description"/>
         
     <TextView
         android:id="@+id/item_list_view_distance"
@@ -62,11 +70,13 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="@id/item_list_view_distance"
         app:layout_constraintTop_toTopOf="@id/item_list_view_address"
+        app:layout_constraintBottom_toBottomOf="@id/item_list_view_address"
         tools:text="(1)"
         style="@style/RestaurantInterestedPerson"
         app:drawableLeftCompat="@drawable/ic_person_outline_24" />
 
     <RatingBar
+        android:id="@+id/item_list_view_rating_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:rating="1"
@@ -76,7 +86,7 @@
         style="@style/Widget.AppCompat.RatingBar.Small"
         android:theme="@style/RatingBarCustom"
         app:layout_constraintEnd_toEndOf="@id/item_list_view_distance"
-        app:layout_constraintTop_toTopOf="@id/item_list_view_opening_time"
+        app:layout_constraintBottom_toBottomOf="@id/item_list_view_opening_time"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

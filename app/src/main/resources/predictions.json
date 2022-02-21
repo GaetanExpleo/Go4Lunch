@@ -1,0 +1,231 @@
+{
+    "predictions": [
+        {
+            "description": "Sushi Lin, Avenue Nicolas About, Montigny-le-Bretonneux, France",
+            "matched_substrings": [
+                {
+                    "length": 4,
+                    "offset": 0
+                }
+            ],
+            "place_id": "ChIJg8fYS9OG5kcRGrwqAoUQEzw",
+            "reference": "ChIJg8fYS9OG5kcRGrwqAoUQEzw",
+            "structured_formatting": {
+                "main_text": "Sushi Lin",
+                "main_text_matched_substrings": [
+                    {
+                        "length": 4,
+                        "offset": 0
+                    }
+                ],
+                "secondary_text": "Avenue Nicolas About, Montigny-le-Bretonneux, France"
+            },
+            "terms": [
+                {
+                    "offset": 0,
+                    "value": "Sushi Lin"
+                },
+                {
+                    "offset": 11,
+                    "value": "Avenue Nicolas About"
+                },
+                {
+                    "offset": 33,
+                    "value": "Montigny-le-Bretonneux"
+                },
+                {
+                    "offset": 57,
+                    "value": "France"
+                }
+            ],
+            "types": [
+                "restaurant",
+                "food",
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "description": "Sushi Yin, Rue de la Mare de Troux, Guyancourt, France",
+            "matched_substrings": [
+                {
+                    "length": 4,
+                    "offset": 0
+                }
+            ],
+            "place_id": "ChIJPZWznSuH5kcRS7S9X8NAldc",
+            "reference": "ChIJPZWznSuH5kcRS7S9X8NAldc",
+            "structured_formatting": {
+                "main_text": "Sushi Yin",
+                "main_text_matched_substrings": [
+                    {
+                        "length": 4,
+                        "offset": 0
+                    }
+                ],
+                "secondary_text": "Rue de la Mare de Troux, Guyancourt, France"
+            },
+            "terms": [
+                {
+                    "offset": 0,
+                    "value": "Sushi Yin"
+                },
+                {
+                    "offset": 11,
+                    "value": "Rue de la Mare de Troux"
+                },
+                {
+                    "offset": 36,
+                    "value": "Guyancourt"
+                },
+                {
+                    "offset": 48,
+                    "value": "France"
+                }
+            ],
+            "types": [
+                "meal_delivery",
+                "restaurant",
+                "food",
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "description": "SUSHI GO, Avenue Jean Jaurès, Bois d'Arcy, France",
+            "matched_substrings": [
+                {
+                    "length": 4,
+                    "offset": 0
+                }
+            ],
+            "place_id": "ChIJN5FyMt2G5kcReGECd-qwL9o",
+            "reference": "ChIJN5FyMt2G5kcReGECd-qwL9o",
+            "structured_formatting": {
+                "main_text": "SUSHI GO",
+                "main_text_matched_substrings": [
+                    {
+                        "length": 4,
+                        "offset": 0
+                    }
+                ],
+                "secondary_text": "Avenue Jean Jaurès, Bois d'Arcy, France"
+            },
+            "terms": [
+                {
+                    "offset": 0,
+                    "value": "SUSHI GO"
+                },
+                {
+                    "offset": 10,
+                    "value": "Avenue Jean Jaurès"
+                },
+                {
+                    "offset": 30,
+                    "value": "Bois d'Arcy"
+                },
+                {
+                    "offset": 43,
+                    "value": "France"
+                }
+            ],
+            "types": [
+                "restaurant",
+                "food",
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "description": "Sushi Bar, Rue Georges Méliès, Bois d'Arcy, France",
+            "matched_substrings": [
+                {
+                    "length": 4,
+                    "offset": 0
+                }
+            ],
+            "place_id": "ChIJDWLT9KGG5kcRsfPwUAO_ZBE",
+            "reference": "ChIJDWLT9KGG5kcRsfPwUAO_ZBE",
+            "structured_formatting": {
+                "main_text": "Sushi Bar",
+                "main_text_matched_substrings": [
+                    {
+                        "length": 4,
+                        "offset": 0
+                    }
+                ],
+                "secondary_text": "Rue Georges Méliès, Bois d'Arcy, France"
+            },
+            "terms": [
+                {
+                    "offset": 0,
+                    "value": "Sushi Bar"
+                },
+                {
+                    "offset": 11,
+                    "value": "Rue Georges Méliès"
+                },
+                {
+                    "offset": 31,
+                    "value": "Bois d'Arcy"
+                },
+                {
+                    "offset": 44,
+                    "value": "France"
+                }
+            ],
+            "types": [
+                "restaurant",
+                "food",
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "description": "Sushi Marché, Rue Mirabeau, Paris, France",
+            "matched_substrings": [
+                {
+                    "length": 4,
+                    "offset": 0
+                }
+            ],
+            "place_id": "ChIJ34UkEaZ65kcRbGNyeJxOhIM",
+            "reference": "ChIJ34UkEaZ65kcRbGNyeJxOhIM",
+            "structured_formatting": {
+                "main_text": "Sushi Marché",
+                "main_text_matched_substrings": [
+                    {
+                        "length": 4,
+                        "offset": 0
+                    }
+                ],
+                "secondary_text": "Rue Mirabeau, Paris, France"
+            },
+            "terms": [
+                {
+                    "offset": 0,
+                    "value": "Sushi Marché"
+                },
+                {
+                    "offset": 14,
+                    "value": "Rue Mirabeau"
+                },
+                {
+                    "offset": 28,
+                    "value": "Paris"
+                },
+                {
+                    "offset": 35,
+                    "value": "France"
+                }
+            ],
+            "types": [
+                "restaurant",
+                "food",
+                "point_of_interest",
+                "establishment"
+            ]
+        }
+    ],
+    "status": "OK"
+}

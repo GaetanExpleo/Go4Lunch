@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/orange</item>
         <item name="colorPrimaryVariant">@color/orange_light</item>
@@ -58,9 +58,12 @@
     </style>
 
     <!--    Restaurant icon-->
-    <style name="RestaurantIcon" parent="Widget.AppCompat.TextView">
+    <style name="RestaurantIconNotAvailable" parent="Widget.AppCompat.TextView">
         <item name="android:textSize">18sp</item>
         <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="RestaurantIconAvailable" parent="RestaurantIconNotAvailable">
         <item name="android:textColor">@color/orange</item>
     </style>
 
@@ -102,4 +105,5 @@
         <item name="android:textColorHint">@android:color/darker_gray</item>
         <item name="android:windowBackground">@drawable/login_background</item>
     </style>
+
 </resources>

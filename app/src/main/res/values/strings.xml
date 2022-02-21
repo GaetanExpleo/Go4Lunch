@@ -9,7 +9,7 @@
     <string name="settings">SETTINGS</string>
     <string name="your_lunch">YOUR LUNCH</string>
     <string name="user_profile_picture">User profile picture</string>
-    <string name="favorites_description">Favoris</string>
+    <string name="selected_description">Restaurant selected</string>
     <string name="call_button_description">Call button</string>
     <string name="call_text">CALL</string>
     <string name="like_button_description">Like button</string>
@@ -20,9 +20,9 @@
     <string name="workmate_picture_description">Workmate picture</string>
     <string name="title_activity_authentication">AuthenticationActivity</string>
 
-    <string name="facebook_application_id">2987624778120944</string>
-    <string name="fb_login_protocol_scheme">fb2987624778120944</string>
-    
+    <string name="facebook_application_id" translatable="false">2987624778120944</string>
+    <string name="fb_login_protocol_scheme" translatable="false">fb2987624778120944</string>
+
     <!-- Main activity -->
     <string name="error_not_connected">You must sign in !</string>
     <string name="error_authentication_canceled">Authentication canceled</string>
@@ -31,10 +31,36 @@
     <string name="connection_succeed">Successful authentication !</string>
     <string name="button_login_text_logged">Display profile</string>
     <string name="button_login_text_not_logged">Connection</string>
+    <string name="searchview_hint">Search Restaurants</string>
 
     <!-- Nav header-->
     <string name="info_no_username_found">No username found</string>
     <string name="info_no_email_found">No email found</string>
-    <string name="go4lunch_logo">Go4Lunch logo</string>
+    <string name="go4lunch_logo" translatable="false">Go4Lunch logo</string>
     <string name="background_picture_navigation_view">background picture navigation</string>
+    <string name="textview_search_workmates_hint">Search workmates</string>
+    <string name="textview_search_restaurants_hint">Search restaurants</string>
+
+    <!--    Retrofit value-->
+    <string name="base_url" translatable="false">https://maps.googleapis.com/maps/api/place/</string>
+    <string name="opening_hour_no_information">No opening information</string>
+    <string name="opening_hour_opened">Opened</string>
+    <string name="opening_hour_closed">Closed</string>
+    <string name="snackbar_no_selected_restaurant">No restaurant selected</string>
+    <string name="item_interested_workmate">%1$s is joining!</string>
+    <string name="workmate_not_decided">%1$s hasn\'t decided yet</string>
+    <string name="workmate_chose_restaurant">%1$s chose the restaurant : %2$s</string>
+
+    <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
+    <string name="settings_title">Settings</string>
+    <string name="notification">Notification</string>
+    <string name="settings_dialog_negative_button">Cancel</string>
+    <string name="setting_dialog_negative_message">Settings not saved</string>
+    <string name="settings_dialog_positive_title">Save</string>
+    <string name="settings_dialog_positive_message">Settings saved</string>
+    <string name="notification_title">It\'s time to eat, go to %1$s at %2$s</string>
+    <string name="and">and</string>
+    <string name="alone">You will lunch alone</string>
+    <string name="lunch_with">This lunch you eat with</string>
+
 </resources>

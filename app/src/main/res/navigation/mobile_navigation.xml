@@ -8,19 +8,19 @@
     <fragment
         android:id="@+id/navigation_mapview"
         android:name="com.openclassrooms.go4lunch.ui.mapview.MapviewFragment"
-        android:label="MapView"
+        android:label="@string/map_view_title"
         tools:layout="@layout/fragment_mapview" />
 
     <fragment
         android:id="@+id/navigation_listview"
         android:name="com.openclassrooms.go4lunch.ui.listview.ListviewFragment"
-        android:label="ListView"
+        android:label="@string/list_view_title"
         tools:layout="@layout/fragment_listview" />
 
     <fragment
         android:id="@+id/navigation_workmate"
         android:name="com.openclassrooms.go4lunch.ui.workmate.WorkmateFragment"
-        android:label="Workmate"
+        android:label="@string/workmate_title"
         tools:layout="@layout/fragment_workmate" />
 
 </navigation>
