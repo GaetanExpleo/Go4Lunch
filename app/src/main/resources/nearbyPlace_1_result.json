@@ -1,0 +1,61 @@
+{
+   "html_attributions" : [],
+   "next_page_token" : "Aap_uEDER1wrU2g-SZ4a_N8b6PpUMb3VmMZZLq8NughE6FFektVBDwo2Z0nijOIZnbFIHUzJIESQ6TUZSq7ANFZmN69HzbfLupJnUndfHHG-BGTcncBUpLq4YKfueJX0qeYhVtCu-60m-DZz-nDwzLYkKF5xXuBcPueXQu6N2VpU3sw2qJN2tPrAcapWMv5GrIOTkMXKtvdhc2sMxzTOGyq4S9Qokgxn4TjGxfKZH5SLeYv2_gxxsS5Key7VZ8Rcv-q9fiizp62C5mplBqz21k34_TdNS4xozeTWiXiZziM0_izIEFOGbw6VeqEurr_XnwkjUZXry2kyLnxoD5t2HvKa_AjYPtp7n3-kVhd4_CckUjsr6FOJdUN9sKAWqNNC39-5Kzq7NygioSFAgOGNlMAMYqylqz71m8snWFCBtcAfmfig_dp__nrA0kamgmLJ",
+   "results" : [
+      {
+         "business_status" : "OPERATIONAL",
+         "geometry" : {
+            "location" : {
+               "lat" : 48.7929652,
+               "lng" : 2.0357114
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 48.7941877802915,
+                  "lng" : 2.037033580291502
+               },
+               "southwest" : {
+                  "lat" : 48.7914898197085,
+                  "lng" : 2.034335619708498
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png",
+         "icon_background_color" : "#909CE1",
+         "icon_mask_base_uri" : "https://maps.gstatic.com/mapfiles/place_api/icons/v2/hotel_pinlet",
+         "name" : "Best Western Paris Saint-Quentin",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 3454,
+               "html_attributions" : [
+                  "\u003ca href=\"https://maps.google.com/maps/contrib/107329545149352545127\"\u003eBest Western Paris Saint-Quentin\u003c/a\u003e"
+               ],
+               "photo_reference" : "Aap_uEBTYxHuEkHcvc7jFA7OS_z9ikirG0wHebdKhk6LV6iEBDNTPzw8enrmvrwOg1eKOfhyQY9LYV4BzkDcavv_SmmbZ4GPyAx8Dj7D_B5qEAYsyhhjlDK3O2s_M4dxdKolQtZSYvBH0byJfIKLRx1sFHiXZw6K9RCbone-xSovc1Ex2nOH",
+               "width" : 5182
+            }
+         ],
+         "place_id" : "ChIJve7xasWG5kcRGCXBGAvqDDw",
+         "plus_code" : {
+            "compound_code" : "Q2VP+57 Montigny-le-Bretonneux, France",
+            "global_code" : "8FW4Q2VP+57"
+         },
+         "rating" : 3.7,
+         "reference" : "ChIJve7xasWG5kcRGCXBGAvqDDw",
+         "scope" : "GOOGLE",
+         "types" : [
+            "lodging",
+            "bar",
+            "restaurant",
+            "food",
+            "point_of_interest",
+            "establishment"
+         ],
+         "user_ratings_total" : 380,
+         "vicinity" : "3 Rue Jean Pierre Timbaud, Montigny-le-Bretonneux"
+      }
+   ],
+   "status" : "OK"
+}

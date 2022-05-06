@@ -1,17 +1,25 @@
 package com.openclassrooms.go4lunch.repository;
 
 import android.content.Context;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import com.firebase.ui.auth.AuthUI;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.ListenerRegistration;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.Transaction;
+import com.openclassrooms.go4lunch.model.ChosenRestaurant;
 import com.openclassrooms.go4lunch.model.User;
 
 import java.util.ArrayList;
@@ -19,12 +27,26 @@ import java.util.List;
 
 public class UserRepository {
 
-    private static final String COLLECTION_NAME = "users";
-    private static final String USERNAME_FIELD = "username";
-    private static final String LIST_RESTAURANT_LIKED = "listRestaurantLikedId";
+    public static final String COLLECTION_NAME = "users";
+    public static final String RESTAURANT_LIKED_FIELD = "listRestaurantLikedId";
+    public static final String RESTAURANT_SELECTED_FIELD = "chosenRestaurant";
+    public static final String CHOSEN_RESTAURANT_ID_FIELD = "chosenRestaurant.placeId";
+    public static final String CHOSEN_RESTAURANT_NAME_FIELD = "chosenRestaurant.placeName";
+    public static final String CHOSEN_RESTAURANT_ADDRESS_FIELD = "chosenRestaurant.placeAddress";
+    public static final String USER_UID_FIELD = "uid";
+    public static final String USER_NAME_FIELD = "username";
     private static volatile UserRepository instance;
 
+    private final MutableLiveData<List<String>> likedRestaurantsMutableLiveData = new MutableLiveData<>();
+    private final MutableLiveData<String> currentUserSelectedRestaurantMutableLiveData = new MutableLiveData<>();
+    private final MutableLiveData<List<String>> selectedRestaurantsMutableLiveData = new MutableLiveData<>();
+    private final MutableLiveData<List<User>> interestedUsersMutableLiveData = new MutableLiveData<>();
+
+    private final FirebaseFirestore db;
+    private ListenerRegistration mRegistration;
+
     public UserRepository() {
+        this.db = FirebaseFirestore.getInstance();
     }
 
     public static UserRepository getInstance() {
@@ -40,40 +62,31 @@ public class UserRepository {
         }
     }
 
+    // --- AUTH USER ---
     @Nullable
-    public FirebaseUser getCurrentUser() {return FirebaseAuth.getInstance().getCurrentUser();}
+    public FirebaseUser getCurrentUser() {
+        return FirebaseAuth.getInstance().getCurrentUser();
+    }
 
     @Nullable
-    public String getCurrentUserUID(){
+    public String getCurrentUserUID() {
         FirebaseUser user = getCurrentUser();
         return (user != null) ? user.getUid() : null;
     }
 
-    public Task<Void> signOut(Context context){return AuthUI.getInstance().signOut(context);}
-
-    // Get the collection reference
-    private CollectionReference getUsersCollection(){
-        return FirebaseFirestore.getInstance().collection(COLLECTION_NAME);
+    public Task<Void> signOut(Context context) {
+        return AuthUI.getInstance().signOut(context);
     }
 
-    //Create user in Firestore
-    public void createUser(){
-        FirebaseUser user = getCurrentUser();
-        if (user != null) {
-            String urlPicture = (user.getPhotoUrl() != null) ? user.getPhotoUrl().toString() : null;
-            String username = user.getDisplayName();
-            String uid = user.getUid();
+    // --- USER FIRESTORE ---
 
-            User userToCreate = new User(uid, username, urlPicture);
+    // Get the collection reference
+    public CollectionReference getUsersCollection() {
+        return db.collection(COLLECTION_NAME);
+    }
 
-            Task<DocumentSnapshot> userData = getUserData();
-            userData.addOnSuccessListener(documentSnapshot -> {
-                if (documentSnapshot.contains(LIST_RESTAURANT_LIKED)) {
-                    userToCreate.setRestaurant((List<Long>) documentSnapshot.get(LIST_RESTAURANT_LIKED));
-                }
-                getUsersCollection().document(uid).set(userToCreate);
-            });
-        }
+    private DocumentReference getUserDocument(String uid) {
+        return getUsersCollection().document(uid);
     }
 
     // Get user data from Firestore
@@ -86,26 +99,152 @@ public class UserRepository {
         }
     }
 
-    public Task<Void> updateRestaurantList(Long restaurantId){
-        String uid = this.getCurrentUserUID();
-        if (uid != null){
-            List<Long> newList = addRemoveRestaurantLiked(restaurantId);
-            return this.getUsersCollection().document(uid).update(LIST_RESTAURANT_LIKED, newList);
-        } else {
-            return null;
+    //Create user in Firestore
+    public void createUser() {
+        FirebaseUser user = getCurrentUser();
+        if (user != null) {
+            String urlPicture = (user.getPhotoUrl() != null) ? user.getPhotoUrl().toString() : null;
+            String username = user.getDisplayName();
+            String uid = user.getUid();
+
+            User userToCreate = new User(uid, username, urlPicture);
+
+            Task<DocumentSnapshot> userData = getUserData();
+            userData.addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+
+                    if (!document.exists()) {
+                        userToCreate.setListRestaurantLikedId(new ArrayList<>());
+                        userToCreate.setChosenRestaurant(new ChosenRestaurant("", "", ""));
+                        getUserDocument(uid).set(userToCreate);
+                    }
+                }
+
+            });
         }
     }
 
-    //Todo : Vérifier la faisabilité avec Denis
-    private List<Long> addRemoveRestaurantLiked(Long restaurantId) {
-        List<Long> currentListRestaurantLiked = new ArrayList<>();
-        getUserData().addOnSuccessListener(documentSnapshot ->
-                currentListRestaurantLiked.addAll((List<Long>) documentSnapshot.get(LIST_RESTAURANT_LIKED)));
-        if (currentListRestaurantLiked.contains(restaurantId)) {
-            currentListRestaurantLiked.remove(restaurantId);
-        } else {
-            currentListRestaurantLiked.add(restaurantId);
+    // --- DATA FROM FIRESTORE ---
+
+    public LiveData<List<String>> getLikedRestaurants() {
+        return likedRestaurantsMutableLiveData;
+    }
+
+    public LiveData<String> getCurrentUserSelectedRestaurant() {
+        return currentUserSelectedRestaurantMutableLiveData;
+    }
+
+    public LiveData<List<String>> getSelectedRestaurantsId() {
+        List<String> selectedRestaurants = new ArrayList<>();
+
+        this.getUsersCollection()
+                .whereNotEqualTo(USER_UID_FIELD, getCurrentUserUID())
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            User user = document.toObject(User.class);
+                            if (!user.getChosenRestaurant().getPlaceId().equals(""))
+                                selectedRestaurants.add(user.getChosenRestaurant().getPlaceId());
+                        }
+                        selectedRestaurantsMutableLiveData.setValue(selectedRestaurants);
+                    } else {
+                        Log.w("TAG", "getSelectedRestaurantsId error: ", task.getException());
+                    }
+                });
+        return selectedRestaurantsMutableLiveData;
+    }
+
+    public LiveData<List<User>> getInterestedUsers(String placeId) {
+        List<User> interestedUsers = new ArrayList<>();
+
+        this.getUsersCollection()
+                .whereNotEqualTo(USER_UID_FIELD, getCurrentUserUID())
+                .whereEqualTo(CHOSEN_RESTAURANT_ID_FIELD, placeId)
+                .get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                for (QueryDocumentSnapshot document : task.getResult()) {
+                    User user = document.toObject(User.class);
+                    interestedUsers.add(user);
+                }
+                interestedUsersMutableLiveData.setValue(interestedUsers);
+            } else {
+                Log.w("TAG", "getInterestedUsers error: ", task.getException());
+            }
+        });
+
+        return interestedUsersMutableLiveData;
+    }
+
+    public void updateLikedRestaurant(String placeId) {
+        String uid = this.getCurrentUserUID();
+        if (uid != null) {
+            db.runTransaction((Transaction.Function<Void>) transaction -> {
+                DocumentSnapshot snapshot = transaction.get(getUserDocument(uid));
+
+                User user = snapshot.toObject(User.class);
+
+                List<String> restaurantLiked = user.getListRestaurantLikedId();
+                if (!restaurantLiked.contains(placeId)) {
+                    restaurantLiked.add(placeId);
+                } else {
+                    restaurantLiked.remove(placeId);
+                }
+                transaction.update(getUserDocument(uid), RESTAURANT_LIKED_FIELD, restaurantLiked);
+
+                return null;
+            });
         }
-        return currentListRestaurantLiked;
+    }
+
+    public void updateSelectedRestaurant(ChosenRestaurant selectedRestaurant) {
+        String uid = this.getCurrentUserUID();
+        if (uid != null) {
+            db.runTransaction((Transaction.Function<String>) transaction -> {
+                DocumentSnapshot snapshot = transaction.get(getUserDocument(uid));
+
+                User user = snapshot.toObject(User.class);
+                ChosenRestaurant chosenRestaurant = user.getChosenRestaurant();
+
+                if (chosenRestaurant.equals(selectedRestaurant)) {
+                    transaction.update(getUserDocument(uid), RESTAURANT_SELECTED_FIELD, new ChosenRestaurant("", "", ""));
+                } else {
+                    transaction.update(getUserDocument(uid), RESTAURANT_SELECTED_FIELD, selectedRestaurant);
+                }
+                return null;
+            });
+        }
+    }
+
+    public void listenDocument() {
+        String uid = this.getCurrentUserUID();
+        if (uid != null) {
+
+            mRegistration = getUserDocument(uid).addSnapshotListener((value, error) -> {
+                if (error != null) {
+                    Log.d("TAG", "Listen failed", error);
+                    return;
+                }
+
+                if (value != null && value.exists()) {
+                    User user = value.toObject(User.class);
+                    likedRestaurantsMutableLiveData.setValue(user.getListRestaurantLikedId());
+                    currentUserSelectedRestaurantMutableLiveData.setValue(user.getChosenRestaurant().getPlaceId());
+                } else {
+                    Log.d("TAG", "Current data : null");
+                }
+            });
+        }
+    }
+
+    public void stopListenDocument() {
+        if (mRegistration != null)
+            mRegistration.remove();
+    }
+
+    public Query getAllWorkmates() {
+        return this.getUsersCollection()
+                .whereNotEqualTo(USER_UID_FIELD, getCurrentUserUID());
     }
 }

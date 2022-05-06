@@ -13,11 +13,11 @@
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/activity_restaurant_collapsing_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:titleEnabled="true">
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <ImageView
                 android:id="@+id/activity_restaurant_detail_image"
@@ -27,8 +27,8 @@
                 android:scaleType="centerCrop"
                 app:layout_collapseMode="parallax"
                 tools:srcCompat="@tools:sample/backgrounds/scenic" />
-
         </com.google.android.material.appbar.CollapsingToolbarLayout>
+
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -38,11 +38,12 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="10dp"
         android:backgroundTint="@color/white"
-        android:contentDescription="@string/favorites_description"
+        android:contentDescription="@string/selected_description"
         android:elevation="8dp"
-        android:src="@drawable/ic_favorite_border_24"
+        android:src="@drawable/ic_restaurant_selected"
         app:layout_anchor="@id/activity_restaurant_detail_appbar"
-        app:layout_anchorGravity="bottom|end" />
+        app:layout_anchorGravity="bottom|end"
+        app:tint="#51C9D2" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -58,12 +59,19 @@
             <TextView
                 android:id="@+id/activity_restaurant_detail_name"
                 style="@style/RestaurantNameDetail"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
                 android:layout_marginTop="8dp"
+                android:ellipsize="marquee"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:maxWidth="260dp"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/activity_restaurant_detail_rating_bar"
                 tools:text="Restaurant" />
 
             <RatingBar
@@ -72,13 +80,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
+                android:layout_marginEnd="70dp"
                 android:isIndicator="true"
                 android:numStars="3"
-                android:stepSize="1"
+                android:stepSize="0.1"
                 android:theme="@style/RatingBarCustom"
                 app:layout_constraintBottom_toBottomOf="@id/activity_restaurant_detail_name"
-                app:layout_constraintStart_toEndOf="@id/activity_restaurant_detail_name"
                 app:layout_constraintTop_toTopOf="@id/activity_restaurant_detail_name"
+                app:layout_constraintEnd_toEndOf="parent"
                 tools:rating="1" />
 
             <TextView
@@ -88,9 +97,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@id/activity_restaurant_detail_name"
                 app:layout_constraintTop_toBottomOf="@id/activity_restaurant_detail_name"
-                app:layout_constraintBottom_toBottomOf="parent"
                 tools:text="Address" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -98,82 +107,52 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="16dp">
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <ImageView
-                    android:id="@+id/activity_restaurant_detail_ic_call"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_call_34"
-                    app:tint="@color/orange"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="@id/activity_restaurant_detail_call"
-                    app:layout_constraintEnd_toEndOf="@id/activity_restaurant_detail_call"
-                    android:contentDescription="@string/call_button_description" />
-
                 <TextView
                     android:id="@+id/activity_restaurant_detail_call"
+                    style="@style/RestaurantIconAvailable"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:drawableTop="@drawable/ic_call_34"
                     android:text="@string/call_text"
-                    app:layout_constraintHorizontal_weight="1"
-                    app:layout_constraintTop_toBottomOf="@id/activity_restaurant_detail_ic_call"
-                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/activity_restaurant_detail_like"
                     app:layout_constraintHorizontal_chainStyle="spread"
-                    style="@style/RestaurantIcon"/>
-
-                <ImageView
-                    android:id="@+id/activity_restaurant_detail_ic_like"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_star_34"
-                    app:tint="@color/orange"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="@id/activity_restaurant_detail_like"
-                    app:layout_constraintEnd_toEndOf="@id/activity_restaurant_detail_like"
-                    android:contentDescription="@string/like_button_description" />
+                    app:layout_constraintHorizontal_weight="1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/activity_restaurant_detail_like"
+                    style="@style/RestaurantIconAvailable"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:drawableTop="@drawable/ic_star_34"
                     android:text="@string/like_text"
-                    app:layout_constraintHorizontal_weight="1"
-                    app:layout_constraintTop_toTopOf="@id/activity_restaurant_detail_call"
-                    app:layout_constraintStart_toEndOf="@id/activity_restaurant_detail_call"
                     app:layout_constraintEnd_toStartOf="@id/activity_restaurant_detail_web"
                     app:layout_constraintHorizontal_chainStyle="spread"
-                    style="@style/RestaurantIcon"/>
-
-                <ImageView
-                    android:id="@+id/activity_restaurant_detail_ic_web"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_world_34"
-                    app:tint="@color/orange"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="@id/activity_restaurant_detail_web"
-                    app:layout_constraintEnd_toEndOf="@id/activity_restaurant_detail_web"
-                    android:contentDescription="@string/website_button_description" />
+                    app:layout_constraintHorizontal_weight="1"
+                    app:layout_constraintStart_toEndOf="@id/activity_restaurant_detail_call"
+                    app:layout_constraintTop_toTopOf="@id/activity_restaurant_detail_call" />
 
                 <TextView
                     android:id="@+id/activity_restaurant_detail_web"
+                    style="@style/RestaurantIconAvailable"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:drawableTop="@drawable/ic_world_34"
                     android:text="@string/website_text"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_chainStyle="spread"
                     app:layout_constraintHorizontal_weight="1"
                     app:layout_constraintStart_toEndOf="@id/activity_restaurant_detail_like"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/activity_restaurant_detail_call"
-                    app:layout_constraintHorizontal_chainStyle="spread"
-                    style="@style/RestaurantIcon"/>
+                    app:layout_constraintTop_toTopOf="@id/activity_restaurant_detail_call" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -183,14 +162,14 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="16dp"
-            android:background="@android:color/darker_gray"/>
+            android:background="@android:color/darker_gray" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/activity_restaurant_detail_recyclerview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginStart="8dp"
-            tools:listitem="@layout/item_workmate_restaurant_detail"/>
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_workmate_restaurant_detail" />
 
     </LinearLayout>
 
